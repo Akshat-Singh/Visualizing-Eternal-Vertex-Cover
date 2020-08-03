@@ -31,19 +31,36 @@
             edges: edges
         }
 
-        let network = new vis.Network(tile, data, {color: "#0ab2dd"});
+        let config = {
+            nodes : {
+                color : {
+                    border: "#000000", 
+                    background: colors[0]
+                }
+            }
+        }
+
+        let network = new vis.Network(tile, data, config);
 
         network.on("click", function(cNode) {
             let nodeId = cNode['nodes']['0'];
             if (nodeId) {
                 let clickedNode = nodes.get(nodeId);
+                /*
                 if (clickedNode.color['background'] === colors[0])
-                    clickedNode.color['background'] = colors[1];
-                /*clickedNode.color = {
-                    border: '#000000',
-                    background: colors[0]
+                    clickedNode.color['background'] = colors[1]; */
+                if (clickedNode.color === colors[1]) {
+                    clickedNode.color = {
+                        border: "#000000", 
+                        background: colors[1]
+                    };
+                } 
+                else {
+                    clickedNode.color = {
+                        border: "#000000",
+                        background: colors[1]
+                    }; 
                 }
-                colors = [colors[1], colors[0]];*/
                 nodes.update(clickedNode);
             }
         });
