@@ -5,7 +5,8 @@ app = Flask(__name__)
 
 @app.route('/')
 def hello_world():
-    return render_template('graph_vis.html')
+    arr = [1, 2, 3, 4, 5, 6, 7]
+    return render_template('graph_vis.html', path_graph=arr)
 
 
 if __name__ == '__main__':

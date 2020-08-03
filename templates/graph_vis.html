@@ -7,22 +7,22 @@
     <div id="network_area"></div>
 
     <script>
-        let nodes = new vis.DataSet([
-            {id: 1, label: "1"},
-            {id: 2, label: "2"},
-            {id: 3, label: "3"},
-            {id: 4, label: "4"},
-            {id: 5, label: "5"},
-            {id: 6, label: "6"}
-        ]);
+        let graph = {{ path_graph }};
 
-        let edges = new vis.DataSet([
-            {from: 1, to: 2},
-            {from: 2, to: 3},
-            {from: 3, to: 4},
-            {from: 4, to: 5},
-            {from: 5, to: 6}
-        ]);
+        let colors = ["#70ca09", "#0ab2dd"];
+
+        let node_data = [];
+        let edge_data = [];
+
+        for (let i = 1; i <= graph.length; i++) {
+            node_data.push({id: i, label: i.toString()});
+            if (i === 1)
+                continue;
+            edge_data.push({from: i - 1, to: i});
+        }
+        let nodes = new vis.DataSet(node_data);
+
+        let edges = new vis.DataSet(edge_data);
 
         let tile = document.getElementById("network_area");
 
@@ -31,18 +31,19 @@
             edges: edges
         }
 
-        let network = new vis.Network(tile, data, {});
+        let network = new vis.Network(tile, data, {color: "#0ab2dd"});
 
-        let colors = ["#70ca09", "#0ab2dd"]
         network.on("click", function(cNode) {
             let nodeId = cNode['nodes']['0'];
             if (nodeId) {
                 let clickedNode = nodes.get(nodeId);
-                clickedNode.color = {
+                if (clickedNode.color['background'] === colors[0])
+                    clickedNode.color['background'] = colors[1];
+                /*clickedNode.color = {
                     border: '#000000',
                     background: colors[0]
                 }
-                colors = [colors[1], colors[0]];
+                colors = [colors[1], colors[0]];*/
                 nodes.update(clickedNode);
             }
         });
