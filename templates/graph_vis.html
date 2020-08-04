@@ -35,7 +35,7 @@
         let config = {
             nodes : {
                 color : {
-                    border: "#000000", 
+                    border: "#000000",
                     background: colors[0]
                 }
             }
@@ -47,36 +47,35 @@
             let nodeId = cNode['nodes']['0'];
             if (nodeId) {
                 let clickedNode = nodes.get(nodeId);
-                
+
                 if (clickedNode.color === colors[1]) {
-                    clickedNode.color = {
-                        border: "#000000", 
-                        background: colors[1]
-                    };
-                } 
-                else {
-                    clickedNode.color = {
-                        border: "#000000",
-                        background: colors[1]
-                    }; 
+                    alert('Works');
+                    clickedNode.color = colors[0];
                 }
+                else {
+                    alert('Works as well');
+                    clickedNode.color = colors[1]
+                }
+
                 nodes.update(clickedNode);
             }
         });
 
         function submitTurn() {
-            let length = graph.length
+            let length = graph.length;
+            let finalState = [];
             for (var i = 1; i <= length; i++) {
-                let finalState = []
                 let currNode = nodes.get(i); 
-                if (currNode.color === colors[0]) {
-                    finalState.push(0); 
-                }
-                else {
+                if (currNode.color === colors[1]) {
+                    alert('Pushing: ' + i);
                     finalState.push(1);
                 }
+                else {
+                    finalState.push(0   );
+                }
             }
-
-        };
+            alert("From JavaScript: " + finalState);
+            $.post('/', {new_state: finalState}, null, 'json');
+        }
     </script>
 {% endblock %}
