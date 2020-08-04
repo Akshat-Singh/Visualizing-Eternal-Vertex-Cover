@@ -64,17 +64,17 @@
         function submitTurn() {
             let length = graph.length;
             let finalState = [];
-            for (var i = 1; i <= length; i++) {
+            let i;
+            for (i = 1; i <= length; i++) {
                 let currNode = nodes.get(i); 
                 if (currNode.color === colors[1]) {
                     alert('Pushing: ' + i);
                     finalState.push(1);
                 }
                 else {
-                    finalState.push(0   );
+                    finalState.push(0);
                 }
             }
-            alert("From JavaScript: " + finalState);
             $.post('/', {new_state: finalState}, null, 'json');
         }
     </script>
