@@ -49,11 +49,9 @@
                 let clickedNode = nodes.get(nodeId);
 
                 if (clickedNode.color === colors[1]) {
-                    alert('Works');
                     clickedNode.color = colors[0];
                 }
                 else {
-                    alert('Works as well');
                     clickedNode.color = colors[1]
                 }
 
@@ -68,8 +66,7 @@
             for (i = 1; i <= length; i++) {
                 let currNode = nodes.get(i); 
                 if (currNode.color === colors[1]) {
-                    alert('Pushing: ' + i);
-                    finalState.push(1);
+                     finalState.push(1);
                 }
                 else {
                     finalState.push(0);

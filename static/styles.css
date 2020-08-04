@@ -1,7 +1,30 @@
 #network_area {
+    position: absolute;
+    background-color: #a5a5a5;
+    top: 25px;
+    right: 430px;
     margin: auto;
     width: 960px;
     height: 540px;
-    border: 1px solid gray;
-    background: #ffffff;
+    border: 5px solid black;
+    /*background: #ffffff; */
+}
+
+#turn_submit {
+    background-color: #70ca09;
+
+    position: absolute;
+    top: 600px;
+    right: 870px;
+    border: 2px solid black;
+    color: black;
+    padding: 30px 20px;
+    text-align: center;
+    font-size: 16px;
+    transition: 0.3s;
+}
+
+#turn_submit:hover{
+    background-color: #0ab2dd;
+    color: white;
 }
