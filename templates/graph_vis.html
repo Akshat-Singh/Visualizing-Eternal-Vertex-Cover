@@ -5,6 +5,7 @@
     <script src="/static/script.js" type="text/javascript"></script>
     <link href="/static/styles.css" type="text/css" rel="stylesheet">
     <div id="network_area"></div>
+    <button id="turn_submit" onclick="submitTurn()"> Play Turn! </button>
 
     <script>
         let graph = {{ path_graph }};
@@ -46,9 +47,7 @@
             let nodeId = cNode['nodes']['0'];
             if (nodeId) {
                 let clickedNode = nodes.get(nodeId);
-                /*
-                if (clickedNode.color['background'] === colors[0])
-                    clickedNode.color['background'] = colors[1]; */
+                
                 if (clickedNode.color === colors[1]) {
                     clickedNode.color = {
                         border: "#000000", 
@@ -64,5 +63,20 @@
                 nodes.update(clickedNode);
             }
         });
+
+        function submitTurn() {
+            let length = graph.length
+            for (var i = 1; i <= length; i++) {
+                let finalState = []
+                let currNode = nodes.get(i); 
+                if (currNode.color === colors[0]) {
+                    finalState.push(0); 
+                }
+                else {
+                    finalState.push(1);
+                }
+            }
+
+        };
     </script>
 {% endblock %}
