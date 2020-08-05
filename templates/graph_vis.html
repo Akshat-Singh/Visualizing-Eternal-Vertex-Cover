@@ -8,6 +8,9 @@
     <button id="turn_submit" onclick="submitTurn()"> Play Turn! </button>
 
     <script>
+        let attacked_edge = {{ point_to_edge }};
+        alert(attacked_edge);         
+
         let graph = {{ path_graph }};
 
         let colors = ["#70ca09", "#0ab2dd"];
@@ -42,6 +45,8 @@
         }
 
         let network = new vis.Network(tile, data, config);
+
+
 
         network.on("click", function(cNode) {
             let nodeId = cNode['nodes']['0'];

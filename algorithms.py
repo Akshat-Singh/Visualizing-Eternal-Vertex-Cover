@@ -7,15 +7,15 @@ class PathGraph:
         self.max_size = size
         self.eternal_vertex_cover_number = size - 1
         self.guards = initial_guards
-        self.winner = None
+        self.winner = ""
 
     def oneStepWin(self, current_state: list) -> tuple:
         for itr in range(len(current_state)):
-            if itr > 0 and (current_state[itr] == 0 and current_state[itr - 1] == 0):
+            if itr > 0 and (current_state[itr] == '0' and current_state[itr - 1] == '0'):
                 self.winner = "attacker"
                 return itr - 1, itr
 
-            if itr < len(current_state) - 1 and (current_state[itr] == 0 and current_state[itr + 1] == 0):
+            if itr < len(current_state) - 1 and (current_state[itr] == '0' and current_state[itr + 1] == '0'):
                 self.winner = "attacker"
                 return itr, itr + 1
 
@@ -32,22 +32,14 @@ class PathGraph:
             return status
 
         for i in range(1, len(current_state) - 1):
-            if current_state[i] == 1 and (current_state[i - 1] == 0 and current_state[i + 1] == 0):
+            print(f"Parsing {i + 1}")
+            if current_state[i] == '1' and (current_state[i - 1] == '0' and current_state[i + 1] == '0'):
+                print(f"Entered")
                 return i, i + 1
 
         for i in range(1, len(current_state)):
-            if current_state[i] == 0:
+            if current_state[i] == '0':
                 return i - 1, i
 
         return -1, -1
-
-
-graph = PathGraph(10, 5)
-
-while graph.winner is None:
-    new_state = [int(x) for x in input().split()]
-    print(f"{graph.attackerAI(new_state)}")
-
-
-print(f"{graph.winner}")
 
