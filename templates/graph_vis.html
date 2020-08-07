@@ -6,15 +6,10 @@
     <link href="/static/styles.css" type="text/css" rel="stylesheet">
     <div id="network_area"></div>
     <button id="turn_submit" onclick="submitTurn()"> Play Turn! </button>
-
+    <script src="/static/script.js" type="text/javascript"></script>
     <script>
-        let attacked_edge = {{ point_to_edge }};
-        alert(attacked_edge);         
-
-        let graph = {{ path_graph }};
-
         let colors = ["#70ca09", "#0ab2dd"];
-
+        let graph = {{ path_graph }};
         let node_data = [];
         let edge_data = [];
 
@@ -46,8 +41,6 @@
 
         let network = new vis.Network(tile, data, config);
 
-
-
         network.on("click", function(cNode) {
             let nodeId = cNode['nodes']['0'];
             if (nodeId) {
@@ -69,7 +62,7 @@
             let finalState = [];
             let i;
             for (i = 1; i <= length; i++) {
-                let currNode = nodes.get(i); 
+                let currNode = nodes.get(i);
                 if (currNode.color === colors[1]) {
                      finalState.push(1);
                 }
@@ -78,6 +71,10 @@
                 }
             }
             $.post('/', {new_state: finalState}, null, 'json');
+
+            let attack_edge = {{ next_edge }};
+
+            alert(attack_edge);
         }
     </script>
 {% endblock %}
