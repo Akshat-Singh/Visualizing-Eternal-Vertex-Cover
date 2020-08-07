@@ -1,10 +1,10 @@
 class PathGraph{
-    constuctor(size, initial_guards) {
+    constructor(size, initial_guards) {
         this.vertices = size
         this.edges = size - 1;
         this.guards = initial_guards;
-        this.eternal_vertex_cover = this.vertices;
-        if (this.eternal_vertex_cover >= this.vertices - 1)
+        this.eternal_vertex_cover = this.vertices - 1;
+        if (this.eternal_vertex_cover <= this.guards)
             this.winner = "defender";
         else
             this.winner = "";
@@ -21,8 +21,8 @@ class PathGraph{
     }
 
     attackerAI (current_state){
-        status = this.oneStepWin();
-        if (this.winner !== "")
+        status = this.oneStepWin(current_state);
+        if (this.currWinner() !== "")
             return [0, 0];
 
         for (let i = 0; i < this.vertices - 1; i++) {
@@ -34,5 +34,13 @@ class PathGraph{
                 return [i - 1, i];
         }
         return [-1, -1];
+    }
+
+    numVertices() {
+        return this.vertices;
+    }
+
+    currWinner() {
+        return this.winner;
     }
 }
