@@ -26,7 +26,7 @@ class PathGraph{
             return [0, 0];
 
         for (let i = 0; i < this.vertices - 1; i++) {
-            if (current_state[i] === 1 && (current_state[i - 1] === 0 && current_state[i + 1] == 0))
+            if (current_state[i] === 1 && (current_state[i - 1] === 0 && current_state[i + 1] === 0))
                 return [i, i + 1]
         }
         for (let i = 0; i < this.vertices; i++) {

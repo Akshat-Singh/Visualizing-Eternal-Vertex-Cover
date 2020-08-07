@@ -22,7 +22,7 @@ def hello_world():
     else:
         print("In Get")
         print(f"Sending: {attack_edge}")
-        return render_template('graph_vis.html', path_graph=arr, next_edge=attack_edge)
+        return render_template('graph_vis.html', path_graph=arr)
 
     return 'OK'
 

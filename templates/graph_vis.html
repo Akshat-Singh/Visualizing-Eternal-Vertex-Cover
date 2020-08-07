@@ -13,6 +13,8 @@
         let node_data = [];
         let edge_data = [];
 
+        datStruct = new PathGraph(5, 3);
+
         for (let i = 1; i <= graph.length; i++) {
             node_data.push({id: i, label: i.toString()});
             if (i === 1)
@@ -72,7 +74,7 @@
             }
             $.post('/', {new_state: finalState}, null, 'json');
 
-            let attack_edge = {{ next_edge }};
+            let attack_edge = datStruct.attackerAI(finalState);
 
             alert(attack_edge);
         }
