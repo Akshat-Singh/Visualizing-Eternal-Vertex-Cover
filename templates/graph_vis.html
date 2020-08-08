@@ -20,7 +20,7 @@
             node_data.push({id: i, label: i.toString()});
             if (i === 1)
                 continue;
-            edge_data.push({from: i - 1, to: i});
+            edge_data.push({id: (i - 1).toString() + "," + i.toString(), from: i - 1, to: i});
         }
         let nodes = new vis.DataSet(node_data);
 
@@ -39,6 +39,13 @@
                     border: "#000000",
                     background: colors[0]
                 }
+            },
+
+            edges : {
+                color: {
+                    highlight : colors[1],
+                    color: "#000000"
+                }
             }
         }
 
@@ -53,7 +60,7 @@
                     clickedNode.color = colors[0];
                 }
                 else {
-                    clickedNode.color = colors[1]
+                    clickedNode.color = colors[1];
                 }
 
                 nodes.update(clickedNode);
@@ -67,7 +74,7 @@
             for (i = 1; i <= length; i++) {
                 let currNode = nodes.get(i);
                 if (currNode.color === colors[1]) {
-                     finalState.push(1);
+                    finalState.push(1);
                 }
                 else {
                     finalState.push(0);
@@ -75,15 +82,17 @@
             }
             alert(finalState);
             let attack_edge = datStruct.attackerAI(finalState);
+            alert(attack_edge);
             pointToEdge(attack_edge[0], attack_edge[1]);
         }
 
         function pointToEdge(node1, node2) {
             let position_vector = network.getPositions([node1, node2]);
-            let slope = (position_vector[node2]['y'] - position_vector[node1]['y']) / (position_vector[node2]['x'] - position_vector[node1]['x']);
-            let angle = Math.atan(-1/slope);
-
-            alert(angle);
+            let assocEdge = edges.get(node1.toString() + "," + node2.toString());
+            console.log(assocEdge);
+            assocEdge.label = "Attacked Node";
+            assocEdge.color = {color: "#ff0000"};
+            edges.update(assocEdge);
         }
     </script>
 {% endblock %}

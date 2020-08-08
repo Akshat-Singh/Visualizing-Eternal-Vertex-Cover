@@ -1,6 +1,6 @@
 #network_area {
     position: absolute;
-    background-color: #a5a5a5;
+    background-color: #ffffff;
     top: 25px;
     right: 430px;
     margin: auto;
@@ -29,8 +29,12 @@
 }
 
 #attack_arrow {
+    width: 200px;
+    height: 40px;
     display: none;
     position: absolute;
     top: 1px;
     right: 1px;
+    transform: rotate(0deg);
+    z-index: 2;
 }
