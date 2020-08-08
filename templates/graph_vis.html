@@ -5,6 +5,7 @@
     <script src="/static/script.js" type="text/javascript"></script>
     <link href="/static/styles.css" type="text/css" rel="stylesheet">
     <div id="network_area"></div>
+    <img src="/static/arrow.png" alt="attack_edge" id="attack_arrow"/>
     <button id="turn_submit" onclick="submitTurn()"> Play Turn! </button>
     <script src="/static/script.js" type="text/javascript"></script>
     <script>
@@ -57,7 +58,7 @@
 
                 nodes.update(clickedNode);
             }
-        });
+        }); 
 
         function submitTurn() {
             let length = graph.length;
@@ -74,8 +75,15 @@
             }
             alert(finalState);
             let attack_edge = datStruct.attackerAI(finalState);
+            pointToEdge(attack_edge[0], attack_edge[1]);
+        }
 
-            alert(attack_edge);
+        function pointToEdge(node1, node2) {
+            let position_vector = network.getPositions([node1, node2]);
+            let slope = (position_vector[node2]['y'] - position_vector[node1]['y']) / (position_vector[node2]['x'] - position_vector[node1]['x']);
+            let angle = Math.atan(-1/slope);
+
+            alert(angle);
         }
     </script>
 {% endblock %}
