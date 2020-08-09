@@ -14,6 +14,7 @@ class PathGraph{
         for (let i = 0; i < this.vertices; i++) {
             if (i > 0 && (current_state[i] === 0 && current_state[i - 1] === 0)) {
                 this.winner = "attacker";
+                alert(this.winner);
                 return [i - 1, i];
             }
         }
@@ -23,13 +24,13 @@ class PathGraph{
     attackerAI (current_state){
         status = this.oneStepWin(current_state);
         if (this.currWinner() !== "")
-            return [0, 0];
+            return status;
 
-        for (let i = 0; i < this.vertices - 1; i++) {
+        for (let i = 0; i < this.numVertices() - 1; i++) {
             if (current_state[i] === 1 && (current_state[i - 1] === 0 && current_state[i + 1] === 0))
                 return [i, i + 1]
         }
-        for (let i = 0; i < this.vertices; i++) {
+        for (let i = 1; i < this.numVertices(); i++) {
             if (current_state[i] === 0)
                 return [i - 1, i];
         }

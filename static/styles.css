@@ -13,7 +13,7 @@
     background-color: #70ca09;
 
     position: absolute;
-    top: 600px;
+    top: 670px;
     right: 870px;
     border: 2px solid black;
     color: black;
@@ -37,4 +37,12 @@
     right: 1px;
     transform: rotate(0deg);
     z-index: 2;
+}
+
+#status_bar {
+    position: absolute;
+    top: 620px;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
 }
