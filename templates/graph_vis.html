@@ -39,6 +39,7 @@
             edges: edges
         }
 
+        /* JSON object containing configuration parameters for nodes and edges of the network */
         let config = {
             nodes : {
                 color : {
@@ -46,7 +47,6 @@
                     background: colors[0]
                 }
             },
-
             edges : {
                 color: {
                     highlight : colors[1],
@@ -54,9 +54,12 @@
                 }
             }
         }
+        /* ====================================================================================== */
 
         let network = new vis.Network(tile, data, config);
 
+
+        /* What the network does when a node is clicked */
         network.on("click", function(cNode) {
 
             let nodeId = cNode['nodes']['0'];
@@ -65,20 +68,26 @@
                 let clickedNode = nodes.get(nodeId);
 
                 if (clickedNode.color === colors[1]) {
-                    guards_onboard--;
+                    guards_onboard = guards_onboard - 1;
+                    alert(guards_onboard);
                     clickedNode.color = colors[0];
                 }
                 else {
-                    guards_onboard++;
-                    if (guards_onboard > num_guards)
+                    guards_onboard = guards_onboard + 1;
+                    if (guards_onboard > num_guards) {
                         alert("You have more guards than you requested!!");
+                        guards_onboard = guards_onboard - 1; 
+                    }
                     else
                         clickedNode.color = colors[1];
                 }
                 nodes.update(clickedNode);
             }
-        }); 
+        });
+        /* ============================================ */
 
+
+        /* Handling the submission of a particular graph state */
         function submitTurn() {
             alert(attack_edge);
             unhighlightPrevious(attack_edge[0], attack_edge[1]);
@@ -100,14 +109,20 @@
             alert(attack_edge);
             pointToEdge(attack_edge[0], attack_edge[1]);
         }
+        /* ==================================================== */
 
+
+        /* Helper function to point to a particular edge on the graph */
         function pointToEdge(node1, node2) {
             let assocEdge = edges.get(node1.toString() + "," + node2.toString());
             assocEdge.color = {color: "#ff0000"};
             assocEdge.width = 5;
             edges.update(assocEdge);
         }
+        /* =========================================================== */
 
+
+        /* Helper function to undo the highlight made by the previous function after the attack is ceased */
         function unhighlightPrevious(node1, node2) {
             alert(node1.toString() + "," + node2.toString());
             let prevEdge = edges.get(node1.toString() + "," + node2.toString());
@@ -115,5 +130,6 @@
             prevEdge.width = 1;
             edges.update(prevEdge);
         }
+        /* =============================================================================================== */
     </script>
 {% endblock %}
