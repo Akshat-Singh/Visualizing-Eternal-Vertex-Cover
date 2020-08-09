@@ -10,6 +10,10 @@
     <button id="turn_submit" onclick="submitTurn()"> Play Turn! </button>
     <script src="/static/script.js" type="text/javascript"></script>
     <script>
+        /* Guards */
+        let num_guards = 3;
+        let guards_onboard = 0;
+
         let attack_edge = [1, 2];
         let colors = ["#70ca09", "#0ab2dd"];
         let graph = {{ path_graph }};
@@ -54,17 +58,23 @@
         let network = new vis.Network(tile, data, config);
 
         network.on("click", function(cNode) {
+
             let nodeId = cNode['nodes']['0'];
             if (nodeId) {
+
                 let clickedNode = nodes.get(nodeId);
 
                 if (clickedNode.color === colors[1]) {
+                    guards_onboard--;
                     clickedNode.color = colors[0];
                 }
                 else {
-                    clickedNode.color = colors[1];
+                    guards_onboard++;
+                    if (guards_onboard > num_guards)
+                        alert("You have more guards than you requested!!");
+                    else
+                        clickedNode.color = colors[1];
                 }
-
                 nodes.update(clickedNode);
             }
         }); 
