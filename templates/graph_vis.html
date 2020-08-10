@@ -5,7 +5,8 @@
     <script src="/static/script.js" type="text/javascript"></script>
     <link href="/static/styles.css" type="text/css" rel="stylesheet">
     <div id="network_area"></div>
-    <div id="status_bar">Hello World!</div>
+    <div id="status_bar"></div>
+    <div id="attack_bar"></div>
     <img src="/static/arrow.png" alt="attack_edge" id="attack_arrow"/>
     <button id="turn_submit" onclick="submitTurn()"> Play Turn! </button>
     <script src="/static/script.js" type="text/javascript"></script>
@@ -84,7 +85,7 @@
                 nodes.update(clickedNode);
 
                 let status_bar = document.getElementById("status_bar");
-                status_bar.innerText = "Total Guards: " + num_guards + "Guards On Board: " + guards_onboard;
+                status_bar.innerText = "Total Guards: " + num_guards + " | Guards On Board: " + guards_onboard;
             }
         });
         /* ============================================ */
@@ -110,7 +111,7 @@
             attack_edge = datStruct.attackerAI(finalState);
             alert(attack_edge);
             pointToEdge(attack_edge[0], attack_edge[1]);
-
+            document.getElementById("attack_bar").innerText = "Attacked Edge: " + attack_edge;
         }
         /* ==================================================== */
 

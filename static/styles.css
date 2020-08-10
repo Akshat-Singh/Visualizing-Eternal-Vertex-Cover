@@ -41,7 +41,15 @@
 
 #status_bar {
     position: absolute;
-    top: 620px;
+    top: 600px;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
+
+#attack_bar {
+    position: absolute;
+    top: 625px;
     left: 50%;
     -ms-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
