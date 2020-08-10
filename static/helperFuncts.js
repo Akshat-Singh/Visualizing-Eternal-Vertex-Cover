@@ -1,10 +1,8 @@
 /* Handling the submission of a particular graph state */
 function submitTurn() {
-    /* Un-highlight the previously highlighted edge */
-    unhighlightPrevious(attack_edge[0], attack_edge[1]);
 
     /* Iterate over the entire graph to compute the final state */
-    let length = graph.length;
+    let length = 5;
     let final_state = [];
     let i;
     for (i = 1; i <= length; i++) {
@@ -17,9 +15,25 @@ function submitTurn() {
     }
     alert(final_state);
 
+    let validity = "Valid Configuration";
+
+    if (JSON.stringify(previous_state) !== JSON.stringify([0, 0, 0, 0, 0]) || JSON.stringify([0, 0]) !== JSON.stringify(attack_edge))
+        validity = datStruct.isValidTransition(previous_state, final_state, attack_edge);
+    alert(validity);
+
+    if (validity !== "Valid Configuration") {
+        alert(validity);
+        return;
+    }
+
+    /* Un-highlight the previously highlighted edge */
+    unhighlightPrevious(attack_edge[0], attack_edge[1]);
+
+    previous_state = final_state;
     /* Call the attackerAI on the final state to see which edge will be next */
     attack_edge = datStruct.attackerAI(final_state);
-    alert(attack_edge);
+    alert("Attacking" + attack_edge);
+
 
     /* Highlight that edge */
     pointToEdge(attack_edge[0], attack_edge[1]);
@@ -48,6 +62,10 @@ function pointToEdge(node1, node2) {
 /* Helper function to undo the highlight made by the previous function after the attack is ceased */
 function unhighlightPrevious(node1, node2) {
     /* Get the edge by serializing the associated node IDs */
+    alert("Unhighlight Entered");
+    alert(node1 + " " + node2);
+    if (node1 === node2)
+        return;
     let prevEdge = edges.get(node1.toString() + "," + node2.toString());
 
     /* Reset the color, width of the edge */

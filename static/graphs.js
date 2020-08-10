@@ -37,6 +37,40 @@ class PathGraph{
         return [-1, -1];
     }
 
+    isValidTransition (initial_state, final_state, attack) {
+        if (this.currWinner() !== "")
+            return true;
+
+        if (initial_state[attack[0]] === 0 && final_state[attack[0]] === 0)
+            return "Attack Not Defended";
+
+        if (initial_state[attack[1]] === 0 && final_state[attack[1]] === 0)
+            return "Attack Not Defended";
+
+        let size = this.numVertices();
+
+        for (let i = 0; i < size; i++) {
+            if (i !== 0 && (final_state[i] === 1 && initial_state[i - 1] === 1)) {
+                initial_state[i - 1] = 0;
+                continue;
+            }
+
+            if (final_state[i] === 1 && initial_state[i] === 1) {
+                initial_state[i] = 0;
+                continue;
+            }
+
+            if (final_state[i] === 1 && initial_state[i + 1] === 1) {
+                initial_state[i] = 0;
+                continue;
+            }
+
+            if (final_state[i] !== final_state[i - 1] && final_state[i] !== final_state[i + 1] && final_state[i] !== final_state[i])
+                return "Invalid Configuration";
+        }
+        return "Valid Configuration";
+    }
+
     numVertices() {
         return this.vertices;
     }

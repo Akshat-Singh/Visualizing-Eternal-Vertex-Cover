@@ -26,16 +26,18 @@
         let num_guards = 3;
         let guards_onboard = 0;
 
-        let attack_edge = [1, 2];
+        let attack_edge = [0, 0];
         let colors = ["#70ca09", "#0ab2dd"];
-        let graph = [0, 0, 0, 0, 0]
+
+        let previous_state = [0, 0, 0, 0, 0];
+
 
         let node_data = [];
         let edge_data = [];
 
         let datStruct = new PathGraph(5, 3);
 
-        for (let i = 1; i <= graph.length; i++) {
+        for (let i = 1; i <= 5; i++) {
             node_data.push({id: i, label: i.toString()});
             if (i === 1)
                 continue;
@@ -83,12 +85,14 @@
                     guards_onboard = guards_onboard - 1;
                     alert(guards_onboard);
                     clickedNode.color = colors[0];
-                } else {
+                }
+                else {
                     guards_onboard = guards_onboard + 1;
                     if (guards_onboard > num_guards) {
                         alert("You have more guards than you requested!!");
                         guards_onboard = guards_onboard - 1;
-                    } else
+                    }
+                    else
                         clickedNode.color = colors[1];
                 }
                 nodes.update(clickedNode);
