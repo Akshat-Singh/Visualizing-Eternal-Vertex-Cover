@@ -2,17 +2,30 @@
 {% block title %} Visualization {% endblock %}
 
 {% block body %}
-    <script src="/static/script.js" type="text/javascript"></script>
-    <link href="/static/styles.css" type="text/css" rel="stylesheet">
+
+    <!-- HTML tags for basic interface elements -->
     <div id="network_area"></div>
     <div id="status_bar"></div>
     <div id="attack_bar"></div>
-    <img src="/static/arrow.png" alt="attack_edge" id="attack_arrow"/>
     <button id="turn_submit" onclick="submitTurn()"> Play Turn! </button>
+    <!-- HTML tags for basic interface elements -->
+
+    <!-- Importing static files -->
+
+    <!-- Importing JavaScript files -->
     <script src="/static/script.js" type="text/javascript"></script>
     <script src="/static/helperFuncts.js" type="text/javascript"></script>
+    <script src="/static/script.js" type="text/javascript"></script>
+    <script src="/static/graphs.js" type="text/javascript"></script>
+    <!-- End JavaScript Import -->
+
+    <!-- Importing Cascading Stylesheets -->
+    <link href="/static/styles.css" type="text/css" rel="stylesheet">
+    <!-- End Cascading Stylesheets Import -->
+
+    <!-- End static Import -->
+
     <script>
-        /* Guards */
         let num_guards = 3;
         let guards_onboard = 0;
 

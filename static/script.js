@@ -1,47 +1,75 @@
-class PathGraph{
-    constructor(size, initial_guards) {
-        this.vertices = size
-        this.edges = size - 1;
-        this.guards = initial_guards;
-        this.eternal_vertex_cover = this.vertices - 1;
-        if (this.eternal_vertex_cover <= this.guards)
-            this.winner = "defender";
-        else
-            this.winner = "";
-    }
+let num_guards = 3;
+let guards_onboard = 0;
 
-    oneStepWin(current_state){
-        for (let i = 0; i < this.vertices; i++) {
-            if (i > 0 && (current_state[i] === 0 && current_state[i - 1] === 0)) {
-                this.winner = "attacker";
-                alert(this.winner);
-                return [i - 1, i];
-            }
+let attack_edge = [1, 2];
+let colors = ["#70ca09", "#0ab2dd"];
+let graph = [0, 0, 0, 0, 0]
+
+let node_data = [];
+let edge_data = [];
+
+let datStruct = new PathGraph(5, 3);
+
+for (let i = 1; i <= graph.length; i++) {
+    node_data.push({id: i, label: i.toString()});
+    if (i === 1)
+        continue;
+    edge_data.push({id: (i - 1).toString() + "," + i.toString(), from: i - 1, to: i});
+}
+let nodes = new vis.DataSet(node_data);
+
+let edges = new vis.DataSet(edge_data);
+
+let tile = document.getElementById("network_area");
+
+let data = {
+    nodes: nodes,
+    edges: edges
+}
+
+/* JSON object containing configuration parameters for nodes and edges of the network */
+let config = {
+    nodes: {
+        color: {
+            border: "#000000",
+            background: colors[0]
         }
-        return [-1, -1];
-    }
-
-    attackerAI (current_state){
-        status = this.oneStepWin(current_state);
-        if (this.currWinner() !== "")
-            return status;
-
-        for (let i = 0; i < this.numVertices() - 1; i++) {
-            if (current_state[i] === 1 && (current_state[i - 1] === 0 && current_state[i + 1] === 0))
-                return [i, i + 1]
+    },
+    edges: {
+        color: {
+            highlight: colors[1],
+            color: "#000000"
         }
-        for (let i = 1; i < this.numVertices(); i++) {
-            if (current_state[i] === 0)
-                return [i - 1, i];
-        }
-        return [-1, -1];
-    }
-
-    numVertices() {
-        return this.vertices;
-    }
-
-    currWinner() {
-        return this.winner;
     }
 }
+/* ====================================================================================== */
+
+let network = new vis.Network(tile, data, config);
+
+
+/* What the network does when a node is clicked */
+network.on("click", function (cNode) {
+
+    let nodeId = cNode['nodes']['0'];
+    if (nodeId) {
+
+        let clickedNode = nodes.get(nodeId);
+
+        if (clickedNode.color === colors[1]) {
+            guards_onboard = guards_onboard - 1;
+            alert(guards_onboard);
+            clickedNode.color = colors[0];
+        } else {
+            guards_onboard = guards_onboard + 1;
+            if (guards_onboard > num_guards) {
+                alert("You have more guards than you requested!!");
+                guards_onboard = guards_onboard - 1;
+            } else
+                clickedNode.color = colors[1];
+        }
+        nodes.update(clickedNode);
+
+        let status_bar = document.getElementById("status_bar");
+        status_bar.innerText = "Total Guards: " + num_guards + " | Guards On Board: " + guards_onboard;
+    }
+});

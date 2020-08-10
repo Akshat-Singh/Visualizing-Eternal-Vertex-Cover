@@ -19,7 +19,6 @@ function submitTurn() {
     pointToEdge(attack_edge[0], attack_edge[1]);
     document.getElementById("attack_bar").innerText = "Attacked Edge: " + attack_edge;
 }
-
 /* ==================================================== */
 
 
@@ -30,7 +29,6 @@ function pointToEdge(node1, node2) {
     assocEdge.width = 5;
     edges.update(assocEdge);
 }
-
 /* =========================================================== */
 
 
@@ -42,5 +40,4 @@ function unhighlightPrevious(node1, node2) {
     prevEdge.width = 1;
     edges.update(prevEdge);
 }
-
 /* =============================================================================================== */
