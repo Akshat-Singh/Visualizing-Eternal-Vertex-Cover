@@ -32,14 +32,13 @@
 
         let previous_state = [0, 0, 0, 0, 0];
 
-
         let node_data = [];
         let edge_data = [];
 
         let datStruct = new PathGraph(5, 3);
 
         for (let i = 1; i <= 5; i++) {
-            node_data.push({id: i, label: i.toString()});
+            node_data.push({id: i, title: i.toString()});
             if (i === 1)
                 continue;
             edge_data.push({id: (i - 1).toString() + "," + i.toString(), from: i - 1, to: i});

@@ -76,3 +76,7 @@ function unhighlightPrevious(node1, node2) {
     edges.update(prevEdge);
 }
 /* =============================================================================================== */
+
+function fadeOthers(graph) {
+    
+}

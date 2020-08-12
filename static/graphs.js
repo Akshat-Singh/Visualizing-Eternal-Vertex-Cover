@@ -51,6 +51,7 @@ class PathGraph{
         let size = this.numVertices();
 
         for (let i = 0; i < size; i++) {
+
             if (i !== 0 && (final_state[i] === 1 && initial_state[i - 1] === 1)) {
                 initial_state[i - 1] = 0;
                 continue;
@@ -61,7 +62,7 @@ class PathGraph{
                 continue;
             }
 
-            if (final_state[i] === 1 && initial_state[i + 1] === 1) {
+            if (i !== size && (final_state[i] === 1 && initial_state[i + 1] === 1)) {
                 initial_state[i] = 0;
                 continue;
             }
