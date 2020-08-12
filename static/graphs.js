@@ -41,12 +41,13 @@ class PathGraph{
         if (this.currWinner() !== "")
             return true;
 
-        if (initial_state[attack[0]] === 0 && final_state[attack[0]] === 0)
+        if (initial_state[attack[0] - 1] === 0 && final_state[attack[0] - 1] === 0)
             return "Attack Not Defended";
 
-        if (initial_state[attack[1]] === 0 && final_state[attack[1]] === 0)
+        if (initial_state[attack[1] - 1] === 0 && final_state[attack[1] - 1]  === 0)
             return "Attack Not Defended";
 
+        initial_state[attack[0] - 1] = initial_state[attack[1] - 1] = 0;
         let size = this.numVertices();
 
         for (let i = 0; i < size; i++) {
