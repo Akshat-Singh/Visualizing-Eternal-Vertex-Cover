@@ -62,8 +62,6 @@ function pointToEdge(node1, node2) {
 /* Helper function to undo the highlight made by the previous function after the attack is ceased */
 function unhighlightPrevious(node1, node2) {
     /* Get the edge by serializing the associated node IDs */
-    alert("Unhighlight Entered");
-    alert(node1 + " " + node2);
     if (node1 === node2)
         return;
     let prevEdge = edges.get(node1.toString() + "," + node2.toString());
@@ -77,6 +75,12 @@ function unhighlightPrevious(node1, node2) {
 }
 /* =============================================================================================== */
 
-function fadeOthers(graph) {
-    
+
+/* Helper function to make a default map for guards */
+function initialGuardSet(num) {
+    let this_guard_set = []
+    for (let i = num - 1; i >= 0; i--)
+        this_guard_set.push(i + 1);
+    return this_guard_set;
 }
+/* ================================================ */
