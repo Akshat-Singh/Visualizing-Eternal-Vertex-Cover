@@ -27,7 +27,7 @@ class PathGraph{
             return status;
 
         for (let i = 0; i < this.numVertices() - 1; i++) {
-            if (current_state[i] === 1 && (current_state[i - 1] === 0 && current_state[i + 1] === 0))
+            if (current_state[i] >= 1 && (current_state[i - 1] === 0 && current_state[i + 1] === 0))
                 return [i, i + 1]
         }
         for (let i = 1; i < this.numVertices(); i++) {
@@ -41,34 +41,22 @@ class PathGraph{
         if (this.currWinner() !== "")
             return true;
 
-        if (initial_state[attack[0] - 1] === 0 && final_state[attack[0] - 1] === 0)
+        if (!((initial_state[attack[0] - 1] === final_state[attack[1] - 1] && final_state[attack[1] - 1] !== 0) ||
+            (initial_state[attack[1] - 1] === final_state[attack[0] - 1] && final_state[attack[0] - 1] !== 0)))
             return "Attack Not Defended";
 
-        if (initial_state[attack[1] - 1] === 0 && final_state[attack[1] - 1]  === 0)
-            return "Attack Not Defended";
-
-        initial_state[attack[0] - 1] = initial_state[attack[1] - 1] = 0;
         let size = this.numVertices();
 
         for (let i = 0; i < size; i++) {
-
-            if (i !== 0 && (final_state[i] === 1 && initial_state[i - 1] === 1)) {
-                initial_state[i - 1] = 0;
-                continue;
-            }
-
-            if (final_state[i] === 1 && initial_state[i] === 1) {
-                initial_state[i] = 0;
-                continue;
-            }
-
-            if (i !== size && (final_state[i] === 1 && initial_state[i + 1] === 1)) {
-                initial_state[i] = 0;
-                continue;
-            }
-
-            if (final_state[i] !== final_state[i - 1] && final_state[i] !== final_state[i + 1] && final_state[i] !== final_state[i])
+            if (i === 0 && !(initial_state[i] === final_state[i] || initial_state[i] === final_state[i + 1]))
                 return "Invalid Configuration";
+
+            if (i === size && !(initial_state[i] === final_state[i] || initial_state[i] === final_state[i - 1]))
+                return "Invalid Configuration";
+
+            if (initial_state[i] !== final_state[i] && initial_state[i - 1] !== final_state[i] && initial_state[i + 1] !== final_state[i])
+                return "Invalid Configuration";
+
         }
         return "Valid Configuration";
     }

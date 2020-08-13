@@ -8,7 +8,7 @@ function submitTurn() {
     for (i = 1; i <= length; i++) {
         let currNode = nodes.get(i);
         if (currNode.color === colors[1])
-            final_state.push(1);
+            final_state.push(parseInt(currNode.label));
         else
             final_state.push(0);
 
@@ -32,7 +32,7 @@ function submitTurn() {
     previous_state = final_state;
     /* Call the attackerAI on the final state to see which edge will be next */
     attack_edge = datStruct.attackerAI(final_state);
-    alert("Attacking" + attack_edge);
+    alert("Attacking: " + attack_edge);
 
 
     /* Highlight that edge */
