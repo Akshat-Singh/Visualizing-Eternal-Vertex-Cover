@@ -48,13 +48,13 @@ class PathGraph{
         let size = this.numVertices();
 
         for (let i = 0; i < size; i++) {
-            if (i === 0 && !(initial_state[i] === final_state[i] || initial_state[i] === final_state[i + 1]))
+            if (i === 0 && (final_state[i] !== 0) && !(initial_state[i] === final_state[i] || initial_state[i] === final_state[i + 1]))
                 return "Invalid Configuration";
 
-            if (i === size && !(initial_state[i] === final_state[i] || initial_state[i] === final_state[i - 1]))
+            if (i === size && (final_state[i] !== 0) && !(initial_state[i] === final_state[i] || initial_state[i] === final_state[i - 1]))
                 return "Invalid Configuration";
 
-            if (initial_state[i] !== final_state[i] && initial_state[i - 1] !== final_state[i] && initial_state[i + 1] !== final_state[i])
+            if ((final_state[i] !== 0) && initial_state[i] !== final_state[i] && initial_state[i - 1] !== final_state[i] && initial_state[i + 1] !== final_state[i])
                 return "Invalid Configuration";
 
         }
