@@ -21,10 +21,9 @@ function submitTurn() {
         validity = datStruct.isValidTransition(previous_state, final_state, attack_edge);
     alert(validity);
 
-    if (validity !== "Valid Configuration") {
-        alert(validity);
+    if (validity !== "Valid Configuration")
         return;
-    }
+
 
     /* Un-highlight the previously highlighted edge */
     unhighlightPrevious(attack_edge[0], attack_edge[1]);
@@ -32,9 +31,6 @@ function submitTurn() {
     previous_state = final_state;
     /* Call the attackerAI on the final state to see which edge will be next */
     attack_edge = datStruct.attackerAI(final_state);
-    alert("Attacking: " + attack_edge);
-
-
     /* Highlight that edge */
     pointToEdge(attack_edge[0], attack_edge[1]);
 
@@ -47,7 +43,7 @@ function submitTurn() {
 /* Helper function to point to a particular edge on the graph */
 function pointToEdge(node1, node2) {
     /* Get the edge by serializing the associated node IDs */
-    let assocEdge = edges.get(node1.toString() + "," + node2.toString());
+    let assocEdge = edges.get(node1 + "," + node2);
 
     /* Change the color, width of the edge */
     assocEdge.color = {color: "#ff0000"};

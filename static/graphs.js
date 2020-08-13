@@ -14,18 +14,18 @@ class PathGraph{
         for (let i = 0; i < this.vertices; i++) {
             if (i > 0 && (current_state[i] === 0 && current_state[i - 1] === 0)) {
                 this.winner = "attacker";
-                alert(this.winner);
-                return [i - 1, i];
+                console.log("Sending: " + [i - 1, i]);
+                return [i, i + 1];  
             }
         }
         return [-1, -1];
     }
 
     attackerAI (current_state){
-        status = this.oneStepWin(current_state);
-        if (this.currWinner() !== "")
+        let status = this.oneStepWin(current_state);
+        if (this.currWinner() !== "") {
             return status;
-
+        }
         for (let i = 0; i < this.numVertices() - 1; i++) {
             if (current_state[i] >= 1 && (current_state[i - 1] === 0 && current_state[i + 1] === 0))
                 return [i, i + 1]
@@ -39,7 +39,7 @@ class PathGraph{
 
     isValidTransition (initial_state, final_state, attack) {
         if (this.currWinner() !== "")
-            return true;
+            return this.currWinner();
 
         if (!((initial_state[attack[0] - 1] === final_state[attack[1] - 1] && final_state[attack[1] - 1] !== 0) ||
             (initial_state[attack[1] - 1] === final_state[attack[0] - 1] && final_state[attack[0] - 1] !== 0)))
