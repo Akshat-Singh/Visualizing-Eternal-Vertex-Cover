@@ -15,7 +15,7 @@ class PathGraph{
             if (i > 0 && (current_state[i] === 0 && current_state[i - 1] === 0)) {
                 this.winner = "attacker";
                 console.log("Sending: " + [i - 1, i]);
-                return [i, i + 1];
+                return [i - 1, i];
             }
         }
         return [-1, -1];
@@ -45,8 +45,8 @@ class PathGraph{
         if (this.currWinner() !== "")
             return this.currWinner();
 
-        if (!((initial_state[attack[0] - 1] === final_state[attack[1] - 1] && final_state[attack[1] - 1] !== 0) ||
-            (initial_state[attack[1] - 1] === final_state[attack[0] - 1] && final_state[attack[0] - 1] !== 0)))
+        if (!((initial_state[attack[0]] === final_state[attack[1]] && final_state[attack[1]] !== 0) ||
+            (initial_state[attack[1]] === final_state[attack[0]] && final_state[attack[0]] !== 0)))
             return "Attack Not Defended";
 
         let size = this.numVertices();

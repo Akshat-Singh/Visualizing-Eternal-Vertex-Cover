@@ -56,18 +56,18 @@ function submitTurn() {
     if (validity !== "Valid Configuration")
         return;
 
-
     /* Un-highlight the previously highlighted edge */
-    unhighlightPrevious(attack_edge[0], attack_edge[1]);
+    unhighlightPrevious(attack_edge[0] + 1, attack_edge[1] + 1);
 
     previous_state = final_state;
     /* Call the attackerAI on the final state to see which edge will be next */
     attack_edge = datStruct.attackerAI(final_state);
+    alert ("Attack Edge: " + attack_edge);
     /* Highlight that edge */
-    pointToEdge(attack_edge[0], attack_edge[1]);
+    pointToEdge(attack_edge[0] + 1, attack_edge[1] + 1);
 
     /* Update the status bar */
-    document.getElementById("attack_bar").innerText = "Attacked Edge: " + attack_edge;
+    document.getElementById("attack_bar").innerText = "Attacked Edge: " + (attack_edge[0] + 1) + " " + (attack_edge[1] + 1);
 }
 
 /* ==================================================== */
@@ -76,8 +76,9 @@ function submitTurn() {
 /* Helper function to point to a particular edge on the graph */
 function pointToEdge(node1, node2) {
     /* Get the edge by serializing the associated node IDs */
+    console.log(node1 + "," + node2);
     let assocEdge = edges.get(node1 + "," + node2);
-
+    console.log(assocEdge);
     /* Change the color, width of the edge */
     assocEdge.color = {color: "#ff0000"};
     assocEdge.width = 5;
