@@ -16,7 +16,9 @@ def hello_world():
 
 @app.route('/graph_vis')
 def visualize():
-    return render_template("graph_vis.html")
+    size = int(input("Number of vertices: "))
+    guards = int(input("Number of guards: "))
+    return render_template("graph_vis.html", this_size=size, this_guards=guards)
 
 
 if __name__ == '__main__':

@@ -15,7 +15,7 @@ class PathGraph{
             if (i > 0 && (current_state[i] === 0 && current_state[i - 1] === 0)) {
                 this.winner = "attacker";
                 console.log("Sending: " + [i - 1, i]);
-                return [i, i + 1];  
+                return [i, i + 1];
             }
         }
         return [-1, -1];
@@ -35,6 +35,10 @@ class PathGraph{
                 return [i - 1, i];
         }
         return [-1, -1];
+    }
+
+    defenderAI(previous_state, attack_edge) {
+
     }
 
     isValidTransition (initial_state, final_state, attack) {

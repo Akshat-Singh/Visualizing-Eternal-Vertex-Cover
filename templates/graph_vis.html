@@ -23,19 +23,26 @@
 
     <!-- End static Import -->
     <script>
-        let num_guards = 3;
+        /* Global variables used in other js files to compare subsequent attacks */
+        let attack_edge = [0, 0];                                   // Keeps tracks of the edge that is being attacked
+        let previous_state = Array.from(Array(graph_size), ()=>0);  // Keep track of the previous state
+
+        /* ===================================================================== */
+
+        /* Keeping Track of the guards */
+        let num_guards = {{ this_guards }};
         let guards_onboard = 0;
         let guard_set = initialGuardSet(num_guards);
+        /* ============================== */
 
-        let attack_edge = [0, 0];
-        let colors = ["#70ca09", "#0ab2dd"];
 
-        let previous_state = [0, 0, 0, 0, 0];
+        let graph_size = {{ this.size }};
 
+        let datStruct = new PathGraph(graph_size, num_guards);
+
+        /* Initializing the nodes and edges */
         let node_data = [];
         let edge_data = [];
-
-        let datStruct = new PathGraph(5, 3);
 
         for (let i = 1; i <= 5; i++) {
             node_data.push({id: i, title: "Node #" + i.toString()});
@@ -43,17 +50,20 @@
                 continue;
             edge_data.push({id: (i - 1).toString() + "," + i.toString(), from: i - 1, to: i});
         }
+        /* ================================= */
+
+        /* Converting node and edge data to vis.js datasets */
         let nodes = new vis.DataSet(node_data);
-
         let edges = new vis.DataSet(edge_data);
-
-
         let data = {
             nodes: nodes,
             edges: edges
         }
+        /* ================================================ */
+
 
         /* JSON object containing configuration parameters for nodes and edges of the network */
+        let colors = ["#70ca09", "#0ab2dd"];
         let config = {
             nodes: {
                 color: {
@@ -70,10 +80,15 @@
         }
         /* ====================================================================================== */
 
+        /* Instantiating the div where the network will be placed */
         let tile = document.getElementById("network_area");
+        /* ====================================================== */
+
+        /* Placing the network on the div, with the given node/edge data and parameters */
         let network = new vis.Network(tile, data, config);
+        /* ============================================================================ */
 
-
+        /* When the node is clicked, execute the below function */
         network.on("click", function (cNode) {
 
             let nodeId = cNode['nodes']['0'];
@@ -105,5 +120,6 @@
                 status_bar.innerText = "Total Guards: " + num_guards + " | Guards On Board: " + guards_onboard;
             }
         });
+        /* ======================================================================================================= */
     </script>
 {% endblock %}
