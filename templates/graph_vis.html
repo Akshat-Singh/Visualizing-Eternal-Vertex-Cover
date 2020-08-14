@@ -27,7 +27,6 @@
         let graph_size = {{ this_size }};
         let attack_edge = [0, 0];                                   // Keeps tracks of the edge that is being attacked
         let previous_state = Array.from(Array(graph_size), ()=>0);  // Keep track of the previous state
-
         /* ===================================================================== */
 
         /* Keeping Track of the guards */
@@ -88,36 +87,8 @@
         /* ============================================================================ */
 
         /* When the node is clicked, execute the below function */
-        network.on("click", function (cNode) {
-
-            let nodeId = cNode['nodes']['0'];
-            if (nodeId) {
-
-                let clickedNode = nodes.get(nodeId);
-
-                if (clickedNode.color === colors[1]) {
-                    guards_onboard = guards_onboard - 1;
-                    clickedNode.color = colors[0];
-                    guard_set.push(parseInt(clickedNode.label));
-                    clickedNode.label = "";
-                }
-                else {
-                    guards_onboard = guards_onboard + 1;
-                    if (guards_onboard > num_guards) {
-                        alert("You have more guards than you requested!!");
-                        guards_onboard = guards_onboard - 1;
-                    }
-                    else {
-                        clickedNode.color = colors[1];
-                        clickedNode.label = "" + guard_set[guard_set.length - 1];
-                        guard_set.pop();
-                    }
-                }
-                nodes.update(clickedNode);
-
-                let status_bar = document.getElementById("status_bar");
-                status_bar.innerText = "Total Guards: " + num_guards + " | Guards On Board: " + guards_onboard;
-            }
+        network.on("click",  function (cNode){
+            nodeClick(cNode); 
         });
         /* ======================================================================================================= */
     </script>

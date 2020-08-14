@@ -1,3 +1,35 @@
+function nodeClick(cNode) {
+    let nodeId = cNode['nodes']['0'];
+    if (nodeId) {
+
+        let clickedNode = nodes.get(nodeId);
+
+        if (clickedNode.color === colors[1]) {
+            guards_onboard = guards_onboard - 1;
+            clickedNode.color = colors[0];
+            guard_set.push(parseInt(clickedNode.label));
+            clickedNode.label = "";
+        }
+        else {
+            guards_onboard = guards_onboard + 1;
+            if (guards_onboard > num_guards) {
+                alert("You have more guards than you requested!!");
+                guards_onboard = guards_onboard - 1;
+            } else {
+                clickedNode.color = colors[1];
+                clickedNode.label = "" + guard_set[guard_set.length - 1];
+                guard_set.pop();
+            }
+        }
+        nodes.update(clickedNode);
+
+        let status_bar = document.getElementById("status_bar");
+        status_bar.innerText = "Total Guards: " + num_guards + " | Guards On Board: " + guards_onboard;
+    }
+}
+
+
+
 /* Handling the submission of a particular graph state */
 function submitTurn() {
 
@@ -17,7 +49,7 @@ function submitTurn() {
 
     let validity = "Valid Configuration";
 
-    if (JSON.stringify(previous_state) !== JSON.stringify(Array.from(Array(graph_size), ()=>0)) || JSON.stringify([0, 0]) !== JSON.stringify(attack_edge))
+    if (JSON.stringify(previous_state) !== JSON.stringify(Array.from(Array(graph_size), () => 0)) || JSON.stringify([0, 0]) !== JSON.stringify(attack_edge))
         validity = datStruct.isValidTransition(previous_state, final_state, attack_edge);
     alert(validity);
 
@@ -37,6 +69,7 @@ function submitTurn() {
     /* Update the status bar */
     document.getElementById("attack_bar").innerText = "Attacked Edge: " + attack_edge;
 }
+
 /* ==================================================== */
 
 
@@ -52,6 +85,7 @@ function pointToEdge(node1, node2) {
     /* Update the edge by plugging it back to the network */
     edges.update(assocEdge);
 }
+
 /* =========================================================== */
 
 
@@ -69,6 +103,7 @@ function unhighlightPrevious(node1, node2) {
     /*Update the edge by plugging it back into the network */
     edges.update(prevEdge);
 }
+
 /* =============================================================================================== */
 
 
@@ -79,4 +114,5 @@ function initialGuardSet(num) {
         this_guard_set.push(i + 1);
     return this_guard_set;
 }
+
 /* ================================================ */
