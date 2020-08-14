@@ -24,6 +24,7 @@
     <!-- End static Import -->
     <script>
         /* Global variables used in other js files to compare subsequent attacks */
+        let graph_size = {{ this_size }};
         let attack_edge = [0, 0];                                   // Keeps tracks of the edge that is being attacked
         let previous_state = Array.from(Array(graph_size), ()=>0);  // Keep track of the previous state
 
@@ -36,15 +37,13 @@
         /* ============================== */
 
 
-        let graph_size = {{ this.size }};
-
         let datStruct = new PathGraph(graph_size, num_guards);
 
         /* Initializing the nodes and edges */
         let node_data = [];
         let edge_data = [];
 
-        for (let i = 1; i <= 5; i++) {
+        for (let i = 1; i <= graph_size; i++) {
             node_data.push({id: i, title: "Node #" + i.toString()});
             if (i === 1)
                 continue;

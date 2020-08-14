@@ -2,7 +2,7 @@
 function submitTurn() {
 
     /* Iterate over the entire graph to compute the final state */
-    let length = 5;
+    let length = graph_size;
     let final_state = [];
     let i;
     for (i = 1; i <= length; i++) {
@@ -17,7 +17,7 @@ function submitTurn() {
 
     let validity = "Valid Configuration";
 
-    if (JSON.stringify(previous_state) !== JSON.stringify([0, 0, 0, 0, 0]) || JSON.stringify([0, 0]) !== JSON.stringify(attack_edge))
+    if (JSON.stringify(previous_state) !== JSON.stringify(Array.from(Array(graph_size), ()=>0)) || JSON.stringify([0, 0]) !== JSON.stringify(attack_edge))
         validity = datStruct.isValidTransition(previous_state, final_state, attack_edge);
     alert(validity);
 
