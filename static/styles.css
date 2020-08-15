@@ -89,24 +89,32 @@
     color: white;
 }
 
-#buttons {
+body {
     top: 25px;
     right: 430px;
     margin: auto;
     width: 960px;
     height: 540px;
-    background-image: linear-gradient(to top, #ffffff 0%, #000000 100%);
+    /*background-image: linear-gradient(to top, #ffffff 0%, #000000 100%);*/
     background-repeat: no-repeat;
     background-attachment: fixed;
-    -webkit-transition: all 5s ease;
-    -moz-transition: all 5s ease;
-    -o-transition: all 5s ease;
-    transition: all 5s ease;
+    transition: 5s ease; 
+    -webkit-transition: 5s ease;
+    -moz-transition: 5s ease;
+    -o-transition: 5s ease;
+    -ms-transition: 5s ease;
+    transition: 5s ease;
     color: white;
-}
-/*
-body.is-active {
-    background-image: linear-gradient(to top, #70ca09 0%, #0ab2dd 100%);
+    background-repeat: no-repeat;
 }
 
- */
+#form {
+    display: none;
+    position: absolute;
+    top: 200px;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    color: #ffffff;   
+    font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+}
