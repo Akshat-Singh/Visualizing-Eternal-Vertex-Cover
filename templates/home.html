@@ -2,6 +2,17 @@
 {% block title %}Home{% endblock %}
 
 {% block body %}
-    <a href="/graph_vis"><button id="Path" onclick="fadeOthers('Path')">Path</button></a>
-    <a><button id="Cycle">Cycle</button></a>
+    <div id="buttons">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <button id="Path">Path</button>
+        <a><button id="Cycle">Cycle</button></a>
+
+        <script>
+            $("#Path").click(function() {
+                alert("Clicked");
+                $("#buttons").innerText = "Fuck you JQUERY";
+                alert("Exiting");
+            });
+        </script>
+    </div>
 {% endblock %}

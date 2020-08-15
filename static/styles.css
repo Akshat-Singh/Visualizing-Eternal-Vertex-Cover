@@ -48,7 +48,7 @@
 
 #Path {
     border: 2px black;
-    background: darkorange;
+    background: #70ca09;
     position: absolute;
     top: 300px;
     left: 50%;
@@ -63,7 +63,7 @@
 }
 
 #Path:hover {
-    background: crimson;
+    background: #0ab2dd;
     color: white;
 }
 
@@ -89,6 +89,24 @@
     color: white;
 }
 
-body {
-    background-color: #000000;
+#buttons {
+    top: 25px;
+    right: 430px;
+    margin: auto;
+    width: 960px;
+    height: 540px;
+    background-image: linear-gradient(to top, #ffffff 0%, #000000 100%);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    -webkit-transition: all 5s ease;
+    -moz-transition: all 5s ease;
+    -o-transition: all 5s ease;
+    transition: all 5s ease;
+    color: white;
 }
+/*
+body.is-active {
+    background-image: linear-gradient(to top, #70ca09 0%, #0ab2dd 100%);
+}
+
+ */
