@@ -3,29 +3,25 @@
 
 {% block body %}
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
     
     <button class="btn" id="Path">Path</button>
     <a><button class="btn" id="Cycle">Cycle</button></a>
 
     <div id="form">
         <h1> Path Graph </h1>
-        <form> 
+        <form action="/graph_vis" method="POST" >
             <div class="form-group row">
-                <label for="total_guards" class="col-10 col-form-label">   Total Number of Guards   </label>
-                
                 <div class="col-6">
-                    <input class="form-control" type="number" value="0" id="num_guards">
-                </div>  
+                    <label for="total_guards" class="col-10 col-form-label">   Total Number of Guards   </label>
+                    <input class="form-control" type="number" value="0" name="total_guards">
 
-                <label for="size_graph" class="col-10 col-form-label">   Number of Vertices   </label>
+                </div>
                 
                 <div class="col-6">
-                    <input class="form-control" type="number" value="0" id="num_vertices">
+                    <label for="num_vertices" class="col-10 col-form-label">   Number of Vertices   </label>
+                    <input class="form-control" type="number" value="0" name="num_vertices">
                 </div>
-                <a href="graph_vis"><button id="form_submit">Move to Level!</button></a>
+                <button type="submit" id="form_submit">Move to Level!</button>
 
             </div>
     </div>

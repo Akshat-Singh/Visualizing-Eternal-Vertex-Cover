@@ -1,18 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>EVC: {% block title %}{% endblock %}</title>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.21.0/vis.js"></script>
-    <script>window.jQuery || document.write('<script src="{{
-        url_for('static', filename='jquery.js') }}">\x3C/script>')</script>
+    <head>
+        <meta charset="UTF-8">
 
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.21.0/vis-network.min.css" type="text/css" rel="stylesheet">
-    <link href="/static/styles.css" type="text/css" rel="stylesheet">
+        <!-- Plug in the title right here -->
+        <title>EVC: {% block title %}{% endblock %}</title>
+        <!-- Plug in the title right here -->
 
-</head>
-<body>
-{% block body %} {% endblock %}
-</body>
+        <!-- JQuery -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script>window.jQuery || document.write('<script src="{{
+            url_for('static', filename='jquery.js') }}">\x3C/script>')</script>
+        <!-- JQuery -->
+
+        <!-- vis.js -->
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.21.0/vis.js"></script>
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.21.0/vis-network.min.css" type="text/css" rel="stylesheet">
+        <!-- vis.js -->
+
+        <!-- Bootstrap -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+        <!-- Bootstrap -->
+
+        <!-- Local stylesheet -->
+        <link href="/static/styles.css" type="text/css" rel="stylesheet">
+        <!-- Local stylesheet -->
+    </head>
+
+    <body>
+        {% block body %} {% endblock %}
+    </body>
 </html>

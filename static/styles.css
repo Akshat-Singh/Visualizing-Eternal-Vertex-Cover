@@ -34,14 +34,14 @@
     left: 50%;
     -ms-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
-    color: #ffffff;
+    color: #000000;
 }
 
 #attack_bar {
     position: absolute;
     top: 625px;
     left: 50%;
-    color: white;
+    color: #000000;
     -ms-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
 }
@@ -95,7 +95,7 @@ body {
     margin: auto;
     width: 960px;
     height: 540px;
-    /*background-image: linear-gradient(to top, #ffffff 0%, #000000 100%);*/
+    background-image: linear-gradient(to top, #ffffff 0%, #000000 100%);
     background-repeat: no-repeat;
     background-attachment: fixed;
     transition: 5s ease; 
