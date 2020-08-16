@@ -3,6 +3,8 @@
 
 {% block body %}
 
+    <link href="/static/path.css" rel="stylesheet" type="text/css">
+
     <div class="container">
         <div class="alert alert-warning alert-dismissible" id="attack_alert" style="display: none">
             <a href="javascript:void(0);" class="close_alert">&times;</a>
@@ -112,6 +114,6 @@
             let parentID = "#" + $(this).parent().attr("id");
             $(parentID).fadeOut(200);
         });
-        /* ======================================================================================================= */
+        /* =================================================================    ====================================== */
     </script>
 {% endblock %}

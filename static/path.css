@@ -1,0 +1,49 @@
+#network_area {
+    position: absolute;
+    background-color: #ffffff;
+    top: 10%;
+    left: 25%;
+    margin: auto;
+    width: 50%;
+    height: 55%;
+    border: 5px solid black;
+}
+
+#turn_submit {
+    background-color: #70ca09;
+    position: absolute;
+    top: 77.5%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    border: 2px solid black;
+    color: black;
+    padding: 3% 2%;
+    text-align: center;
+    font-size: 16px;
+    transition: 0.3s;
+}
+
+#turn_submit:hover{
+    background-color: #0ab2dd;
+    color: white;
+}
+
+
+#status_bar {
+    position: absolute;
+    top: 67.5%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    color: #000000;
+}
+
+#attack_bar {
+    position: absolute;
+    top: 70%;
+    left: 50%;
+    color: #000000;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}

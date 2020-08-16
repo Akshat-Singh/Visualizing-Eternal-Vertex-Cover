@@ -2,8 +2,11 @@
 {% block title %}Home{% endblock %}
 
 {% block body %}
+    <link href="/static/styles.css" type="text/css" rel="stylesheet">
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    
+
+
     <button class="btn" id="Path">Path</button>
     <a><button class="btn" id="Cycle">Cycle</button></a>
 
@@ -20,7 +23,7 @@
                     <label for="num_vertices" class="col-10 col-form-label">   Number of Vertices   </label>
                     <input class="form-control" type="number" value="0" name="num_vertices">
                 </div>
-                <button type="submit" id="form_submit">Move to Level!</button>
+                <button type="submit" id="form_submit" >Move to Level!</button>
 
             </div>
     </div>
