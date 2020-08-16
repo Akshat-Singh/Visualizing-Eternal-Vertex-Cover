@@ -2,12 +2,23 @@
 {% block title %} Visualization {% endblock %}
 
 {% block body %}
-    <!-- HTML Alerts
-    <div class="container" style="display: none">
-        <div class="alert alert"></div>
-    </div>
-    HTML Alerts -->
 
+    <div class="container">
+        <div class="alert alert-warning alert-dismissible" id="attack_alert" style="display: none">
+            <a href="javascript:void(0);" class="close_alert">&times;</a>
+            <strong id="attack_alert_message"></strong>
+        </div>
+
+        <div class="alert alert-danger alert-dismissible" id="invattack_alert" style="display: none">
+            <a href="javascript:void(0);" class="close_alert">&times;</a>
+            <strong id="invattack_alert_message">Transition Invalid!</strong>
+        </div>
+
+        <div class="alert alert-success alert-dismissible" id="winner_alert" style="display: none">
+            <a href="javascript:void(0);" class="close_alert">&times;</a>
+            <strong id="winner_alert_message">Transition Invalid!</strong>
+        </div>
+    </div>
 
     <!-- HTML tags for basic interface elements -->
     <div id="network_area"></div>
@@ -95,6 +106,11 @@
         /* When the node is clicked, execute the below function */
         network.on("click",  function (cNode){
             nodeClick(cNode);
+        });
+
+        $(".close_alert").click(function() {
+            let parentID = "#" + $(this).parent().attr("id");
+            $(parentID).fadeOut(200);
         });
         /* ======================================================================================================= */
     </script>

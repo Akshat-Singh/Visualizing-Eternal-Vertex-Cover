@@ -13,9 +13,11 @@ function nodeClick(cNode) {
         else {
             guards_onboard = guards_onboard + 1;
             if (guards_onboard > num_guards) {
-                alert("You have more guards than you requested!!");
+                document.getElementById("invattack_alert_message").innerText = "Invalid Transition! You have more guards than you requested";
+                $("#invattack_alert").fadeIn(200);
                 guards_onboard = guards_onboard - 1;
-            } else {
+            }
+            else {
                 clickedNode.color = colors[1];
                 clickedNode.label = "" + guard_set[guard_set.length - 1];
                 guard_set.pop();
@@ -45,29 +47,36 @@ function submitTurn() {
             final_state.push(0);
 
     }
-    alert(final_state);
 
     let validity = "Valid Configuration";
 
     if (JSON.stringify(previous_state) !== JSON.stringify(Array.from(Array(graph_size), () => 0)) || JSON.stringify([0, 0]) !== JSON.stringify(attack_edge))
         validity = datStruct.isValidTransition(previous_state, final_state, attack_edge);
-    alert(validity);
 
-    if (validity !== "Valid Configuration")
+    if (validity !== "Valid Configuration") {
+        document.getElementById("invattack_alert_message").innerText = "Invalid Transition! You cannot move from state " + previous_state + " to " + final_state;
+        $("#invattack_alert").fadeIn();
         return;
-
+    }
     /* Un-highlight the previously highlighted edge */
     unhighlightPrevious(attack_edge[0] + 1, attack_edge[1] + 1);
 
     previous_state = final_state;
     /* Call the attackerAI on the final state to see which edge will be next */
     attack_edge = datStruct.attackerAI(final_state);
-    alert ("Attack Edge: " + attack_edge);
     /* Highlight that edge */
     pointToEdge(attack_edge[0] + 1, attack_edge[1] + 1);
 
+    if (datStruct.winner !== "") {
+        document.getElementById("winner_alert_message").innerHTML = "The attacker wins with an incontestable attack";
+        $("#winner_alert").fadeIn();
+        return;
+    }
+
     /* Update the status bar */
+    $("#attack_alert").fadeIn();
     document.getElementById("attack_bar").innerText = "Attacked Edge: " + (attack_edge[0] + 1) + " " + (attack_edge[1] + 1);
+    document.getElementById("attack_alert_message").innerText = "New Attack on edge: (" + (attack_edge[0] + 1) + ", " + (attack_edge[1] + 1) + ")";
 }
 
 /* ==================================================== */
@@ -76,9 +85,7 @@ function submitTurn() {
 /* Helper function to point to a particular edge on the graph */
 function pointToEdge(node1, node2) {
     /* Get the edge by serializing the associated node IDs */
-    console.log(node1 + "," + node2);
     let assocEdge = edges.get(node1 + "," + node2);
-    console.log(assocEdge);
     /* Change the color, width of the edge */
     assocEdge.color = {color: "#ff0000"};
     assocEdge.width = 5;

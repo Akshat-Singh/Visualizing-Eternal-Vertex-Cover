@@ -1,19 +1,21 @@
 #network_area {
     position: absolute;
     background-color: #ffffff;
-    top: 25px;
-    right: 430px;
+    top: 10%;
+    left: 25%;
     margin: auto;
-    width: 960px;
-    height: 540px;
+    width: 50%;
+    height: 55%;
     border: 5px solid black;
 }
 
 #turn_submit {
     background-color: #70ca09;
     position: absolute;
-    top: 670px;
-    right: 870px;
+    top: 77.5%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
     border: 2px solid black;
     color: black;
     padding: 30px 20px;
@@ -30,7 +32,7 @@
 
 #status_bar {
     position: absolute;
-    top: 600px;
+    top: 67.5%;
     left: 50%;
     -ms-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
@@ -39,7 +41,7 @@
 
 #attack_bar {
     position: absolute;
-    top: 625px;
+    top: 70%;
     left: 50%;
     color: #000000;
     -ms-transform: translate(-50%, -50%);

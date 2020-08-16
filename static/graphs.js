@@ -14,7 +14,6 @@ class PathGraph{
         for (let i = 0; i < this.vertices; i++) {
             if (i > 0 && (current_state[i] === 0 && current_state[i - 1] === 0)) {
                 this.winner = "attacker";
-                console.log("Sending: " + [i - 1, i]);
                 return [i - 1, i];
             }
         }
