@@ -94,6 +94,9 @@ function submitTurn() {
     /* Un-highlight the previously highlighted edge */
     unhighlightPrevious(attack_edge[0] + 1, attack_edge[1] + 1);
 
+    clone_config = _.cloneDeep(config);
+    clone_data = _.cloneDeep(data);
+    clone_network = new vis.Network(clone_tile, clone_data, clone_config);
     previous_state = final_state;
     /* Call the attackerAI on the final state to see which edge will be next */
     attack_edge = datStruct.attackerAI(final_state);
