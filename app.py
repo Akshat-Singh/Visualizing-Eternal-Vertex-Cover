@@ -11,15 +11,16 @@ def hello_world():
 
 @app.route('/graph_vis', methods=["GET", "POST"])
 def visualize():
-    global size, guards
+    global size, guards, player
     if request.method == "POST":
         size = (request.form.get("num_vertices"))
         guards = (request.form.get("total_guards"))
-        print(f"{size}, {guards}")
-        return render_template("graph_vis.html", this_size=size, this_guards=guards)
+        player = str(request.form.get("path_submit"))
+        print(f"{size}, {guards}, {player}")
+        return render_template("graph_vis.html", this_size=size, this_guards=guards, this_player=player)
 
     if request.method == "GET":
-        return render_template("graph_vis.html", this_size=size, this_guards=guards)
+        return render_template("graph_vis.html", this_size=size, this_guards=guards, this_player=player)
 
 
 if __name__ == '__main__':

@@ -24,6 +24,7 @@
 
     <!-- HTML tags for basic interface elements -->
     <div id="network_area"></div>
+    <div id="clone_area"></div>
     <div id="status_bar"></div>
     <div id="attack_bar"></div>
     <button id="turn_submit" onclick="submitTurn()"> Play Turn!</button>
@@ -46,6 +47,7 @@
         let graph_size = {{ this_size }};
         let attack_edge = [0, 0];                                   // Keeps tracks of the edge that is being attacked
         let previous_state = Array.from(Array(graph_size), ()=>0);  // Keep track of the previous state
+        //let player = .toString();                             // Keeps track of what the user is gonna play with
         /* ===================================================================== */
 
         /* Keeping Track of the guards */
@@ -103,12 +105,21 @@
 
         /* Placing the network on the div, with the given node/edge data and parameters */
         let network = new vis.Network(tile, data, config);
+        network.storePositions();       // Storing positions in the data json file to support copying the previous config into the cloned tile
         /* ============================================================================ */
 
+        let clone_tile = document.getElementById("clone_area");
+        let clone_network = new vis.Network(clone_tile, data, config);
+
         /* When the node is clicked, execute the below function */
-        network.on("click",  function (cNode){
-            nodeClick(cNode);
+        network.on("click",  function (cElement){
+            nodeClick(cElement);
+            /*
+            else if (player === "edge")
+                edgeClick(cElement);
+            */
         });
+
 
         $(".close_alert").click(function() {
             let parentID = "#" + $(this).parent().attr("id");

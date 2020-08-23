@@ -1,7 +1,6 @@
 function nodeClick(cNode) {
     let nodeId = cNode['nodes']['0'];
     if (nodeId) {
-
         let clickedNode = nodes.get(nodeId);
 
         if (clickedNode.color === colors[1]) {
@@ -27,6 +26,40 @@ function nodeClick(cNode) {
 
         let status_bar = document.getElementById("status_bar");
         status_bar.innerText = "Total Guards: " + num_guards + " | Guards On Board: " + guards_onboard;
+    }
+}
+
+
+function edgeClick(cEdge) {
+    let edgeId = cEdge['edges']['0'];
+    if (edgeId) {
+        alert("Clicked Edge: " + edgeId);
+        /*
+        let clickedEdge = edges.get(edgeId);
+
+        if (clickedEdge.color === colors[1]) {
+            clickedEdge.color = colors[0];
+            guard_set.push(parseInt(clickedNode.label));
+            clickedNode.label = "";
+        }
+        else {
+            guards_onboard = guards_onboard + 1;
+            if (guards_onboard > num_guards) {
+                document.getElementById("invattack_alert_message").innerText = "Invalid Transition! You have more guards than you requested";
+                $("#invattack_alert").fadeIn(200);
+                guards_onboard = guards_onboard - 1;
+            }
+            else {
+                clickedNode.color = colors[1];
+                clickedNode.label = "" + guard_set[guard_set.length - 1];
+                guard_set.pop();
+            }
+        }
+        nodes.update(clickedNode);
+
+        let status_bar = document.getElementById("status_bar");
+        status_bar.innerText = "Total Guards: " + num_guards + " | Guards On Board: " + guards_onboard;
+        */
     }
 }
 

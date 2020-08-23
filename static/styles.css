@@ -70,3 +70,17 @@ body {
     color: #ffffff;   
     font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
 }
+
+.form_submit {
+    position: absolute;
+    border: 2px black;
+    background: #70ca09;
+    color: black;
+    font-size: 16px;
+    transition: 0.3s;
+}
+
+#form_submit:hover {
+    background: #0ab2dd;
+    color: white;
+}
