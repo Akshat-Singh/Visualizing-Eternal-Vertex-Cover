@@ -103,20 +103,25 @@
         /* ====================================================================================== */
 
         /* Instantiating the div where the network will be placed */
-        let tile = document.getElementById("network_area");
+        let tile = document.getElementById( "network_area");
         /* ====================================================== */
 
         /* Placing the network on the div, with the given node/edge data and parameters */
-        let network = new vis.Network(tile, data, config);
-        network.storePositions();       // Storing positions in the data json file to support copying the previous config into the cloned tile
+        let network = new vis.Network(tile, data, config);   
+        network.storePositions();       // Storing positions in the data json file to support copying the previous config into the cloned tile 
+        console.log(data); 
         /* ============================================================================ */
 
         let clone_data = _.cloneDeep(data);
+        console.log(clone_data);
         let clone_config = _.cloneDeep(config);
 
         let clone_tile = document.getElementById("clone_area");
         let clone_network = new vis.Network(clone_tile, clone_data, clone_config);
+        network.setOptions({nodes: {fixed: {x: true, y: true}}});
+        clone_network.setOptions({nodes: {fixed: {x: true, y: true}}});
 
+        
         /* When the node is clicked, execute the below function */
         network.on("click",  function (cElement){
             nodeClick(cElement);
