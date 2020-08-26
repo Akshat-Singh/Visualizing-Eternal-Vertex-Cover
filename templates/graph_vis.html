@@ -131,6 +131,10 @@
             */
         });
 
+        network.on("dragStart", function(dragElement) {
+            dragStartHandler(dragElement);
+        });
+
 
         $(".close_alert").click(function() {
             let parentID = "#" + $(this).parent().attr("id");

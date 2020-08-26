@@ -29,6 +29,15 @@ function nodeClick(cNode) {
     }
 }
 
+function dragStartHandler(dragElement) {
+    console.log(dragElement);
+    let draggedNode = nodes.get(dragElement['nodes'][0]); 
+    if(draggedNode.label === undefined) 
+        alert("No guard here");
+    else
+        alert("Dragging Guard: " + draggedNode.label); 
+    return; 
+}
 
 function edgeClick(cEdge) {
     let edgeId = cEdge['edges']['0'];
