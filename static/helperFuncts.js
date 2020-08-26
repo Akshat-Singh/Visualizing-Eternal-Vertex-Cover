@@ -30,13 +30,20 @@ function nodeClick(cNode) {
 }
 
 function dragStartHandler(dragElement) {
-    console.log(dragElement);
     let draggedNode = nodes.get(dragElement['nodes'][0]); 
+    if (!draggedNode)
+        return; 
+    
     if(draggedNode.label === undefined) 
         alert("No guard here");
     else
         alert("Dragging Guard: " + draggedNode.label); 
     return; 
+}
+
+function dragEndHandler(dropElement) {
+    console.log(dropElement); 
+    alert(dropElement["nodes"][0]); 
 }
 
 function edgeClick(cEdge) {
