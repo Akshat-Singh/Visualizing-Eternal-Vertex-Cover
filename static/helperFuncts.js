@@ -29,20 +29,48 @@ function nodeClick(cNode) {
     }
 }
 
+function nodeDoubleClick(cNode) {
+    let nodeId = cNode['nodes']['0'];
+    if (nodeId) {
+        let clickedNode = nodes.get(nodeId); 
+        clickedNode.color = colors[2]; 
+        nodes.update(clickedNode); 
+    }
+}
+
+
 function dragStartHandler(dragElement) {
-    let draggedNode = nodes.get(dragElement['nodes'][0]); 
-    if (!draggedNode)
+    console.log(dragElement); 
+    
+    console.log("Length: " + dragElement['nodes'].length);
+    if (dragElement['nodes'].length === 0) {
         return; 
+    }
+    let draggedNode = nodes.get(dragElement['nodes'][0]); 
     
     if(draggedNode.label === undefined) 
         alert("No guard here");
-    else
-        alert("Dragging Guard: " + draggedNode.label); 
+    else {
+        alert("Dragging Guard: " + draggedNode.label);
+         
+    }
     return; 
 }
 
 function dragEndHandler(dropElement) {
-    console.log(dropElement); 
+    if (dropElement['nodes'].length === 0)
+        return;
+    
+    let highlightEdge = edges.get(dropElement["edges"][0]); 
+    highlightEdge.color = {color: "#ffff00"};
+    
+    let newOpts;
+    if (parseInt(dropElement["edges"][0][0]) === parseInt(dropElement["nodes"][0]))
+        newOpts = {layout: {hierarchial : {direction: "RL", sortMethod: "directed"}}};
+    else   
+        newOpts = {layout: {hierarchial : {direction: "LR", sortMethod: "directed"}}};
+    
+    edges.set
     alert(dropElement["nodes"][0]); 
 }
 
@@ -174,5 +202,4 @@ function initialGuardSet(num) {
         this_guard_set.push(i + 1);
     return this_guard_set;
 }
-
 /* ================================================ */

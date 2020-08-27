@@ -85,7 +85,7 @@
 
 
         /* JSON object containing configuration parameters for nodes and edges of the network */
-        let colors = ["#70ca09", "#0ab2dd"];
+        let colors = ["#70ca09", "#0ab2dd",  "#FF9702"];
         let config = {
             nodes: {
                 color: {
@@ -123,6 +123,10 @@
 
         
         /* When the node is clicked, execute the below function */
+        network.on("doubleClick", function (cElement) { 
+            nodeDoubleClick(cElement);  
+        });        
+        
         network.on("click",  function (cElement){
             nodeClick(cElement);
             /*
