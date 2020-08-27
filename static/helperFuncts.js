@@ -2,13 +2,17 @@ function nodeClick(cNode) {
     let nodeId = cNode['nodes']['0'];
     if (nodeId) {
         let clickedNode = nodes.get(nodeId);
-
+        
+        if (clickedNode.color === colors[0])
+            return; 
+        
         if (clickedNode.color === colors[1]) {
             guards_onboard = guards_onboard - 1;
             clickedNode.color = colors[0];
             guard_set.push(parseInt(clickedNode.label));
             clickedNode.label = "";
         }
+
         else {
             guards_onboard = guards_onboard + 1;
             if (guards_onboard > num_guards) {
@@ -33,8 +37,37 @@ function nodeDoubleClick(cNode) {
     let nodeId = cNode['nodes']['0'];
     if (nodeId) {
         let clickedNode = nodes.get(nodeId); 
-        clickedNode.color = colors[2]; 
+        if (clickedNode.color === colors[1]) {
+            
+            if (guards_onboard >= total_guards) {
+                document.getElementById("invattack_alert_message").innerText = "Invalid Transition! You have more guards than you requested";
+                $("#invattack_alert").fadeIn(200);
+                return; 
+            }
+
+            guards_onboard = guards_onboard + 1;
+            clickedNode.color = colors[2];
+            clickedNode.label = clickedNode.label + ", " + guard_set[guard_set.length - 1];
+            guard_set.pop();
+        }
+        
+        else if (clickedNode.color === colors[0]){
+            guards_onboard = guards_onboard + 1;
+            if (guards_onboard > num_guards) {
+                document.getElementById("invattack_alert_message").innerText = "Invalid Transition! You have more guards than you requested";
+                $("#invattack_alert").fadeIn(200);
+                guards_onboard = guards_onboard - 1;
+            }
+            else {
+                clickedNode.color = colors[1];
+                clickedNode.label = "" + guard_set[guard_set.length - 1];
+                guard_set.pop();
+            }   
+        }
+        
         nodes.update(clickedNode); 
+        let status_bar = document.getElementById("status_bar");
+        status_bar.innerText = "Total Guards: " + num_guards + " | Guards On Board: " + guards_onboard;
     }
 }
 
