@@ -123,12 +123,22 @@
 
         
         /* When the node is clicked, execute the below function */
+        let doubleClickTime = 0; 
         network.on("doubleClick", function (cElement) { 
+            doubleClickTime = new Date(); 
             nodeDoubleClick(cElement);  
         });        
         
         network.on("click",  function (cElement){
-            nodeClick(cElement);
+            
+            /* To help JS avoid getting confused between click and double click */
+            let t0 = new Date(); 
+            if (t0 - doubleClickTime > 200) {
+                setTimeout(function() {
+                    if (t0 - doubleClickTime > 200)
+                        nodeClick(cElement);
+                }, 200)
+            }
             /*
             else if (player === "edge")
                 edgeClick(cElement);

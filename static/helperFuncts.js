@@ -12,12 +12,14 @@ function nodeClick(cNode) {
             guard_set.push(parseInt(clickedNode.label));
             clickedNode.label = "";
         }
-
+        /*
         else {
             guards_onboard = guards_onboard + 1;
             if (guards_onboard > num_guards) {
+                
                 document.getElementById("invattack_alert_message").innerText = "Invalid Transition! You have more guards than you requested";
                 $("#invattack_alert").fadeIn(200);
+                
                 guards_onboard = guards_onboard - 1;
             }
             else {
@@ -25,7 +27,7 @@ function nodeClick(cNode) {
                 clickedNode.label = "" + guard_set[guard_set.length - 1];
                 guard_set.pop();
             }
-        }
+        } */
         nodes.update(clickedNode);
 
         let status_bar = document.getElementById("status_bar");
@@ -36,22 +38,24 @@ function nodeClick(cNode) {
 function nodeDoubleClick(cNode) {
     let nodeId = cNode['nodes']['0'];
     if (nodeId) {
-        let clickedNode = nodes.get(nodeId); 
+        let clickedNode = nodes.get(nodeId);
+        alert(clickedNode.color); 
         if (clickedNode.color === colors[1]) {
-            
-            if (guards_onboard >= total_guards) {
+            if (guards_onboard >= num_guards) {
                 document.getElementById("invattack_alert_message").innerText = "Invalid Transition! You have more guards than you requested";
                 $("#invattack_alert").fadeIn(200);
                 return; 
             }
 
+
             guards_onboard = guards_onboard + 1;
             clickedNode.color = colors[2];
+            alert(clickedNode.color);
             clickedNode.label = clickedNode.label + ", " + guard_set[guard_set.length - 1];
             guard_set.pop();
         }
         
-        else if (clickedNode.color === colors[0]){
+        else {
             guards_onboard = guards_onboard + 1;
             if (guards_onboard > num_guards) {
                 document.getElementById("invattack_alert_message").innerText = "Invalid Transition! You have more guards than you requested";
