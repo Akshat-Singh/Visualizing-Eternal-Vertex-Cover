@@ -12,6 +12,16 @@ function nodeClick(cNode) {
             guard_set.push(parseInt(clickedNode.label));
             clickedNode.label = "";
         }
+
+        if (clickedNode.color === colors[2]) {
+            guards_onboard = guards_onboard - 1; 
+            clickedNode.color = colors[1];
+
+            let temp_label = (clickedNode.label).split(',');  
+            
+            guard_set.push(parseInt(temp_label[0]));
+            clickedNode.label = "" + temp_label[1]; 
+        }
         /*
         else {
             guards_onboard = guards_onboard + 1;
