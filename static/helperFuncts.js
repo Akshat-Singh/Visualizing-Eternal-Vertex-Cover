@@ -163,8 +163,15 @@ function submitTurn() {
     let length = graph_size;
     let final_state = [];
     let i;
+    
     for (i = 1; i <= length; i++) {
         let currNode = nodes.get(i);
+        if (currNode.color === colors[2]) {
+            alert("Sort all the guards into individual nodes!"); 
+            final_state = [];
+            return; 
+        }
+        
         if (currNode.color === colors[1])
             final_state.push(parseInt(currNode.label));
         else
